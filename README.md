@@ -27,22 +27,23 @@ summary of the connection statistics.
 
 == Sample output ==
 
-  $ go run qad-tcp-checker.go
-  .test failure
+  $ go run qad-tcp-checker.go  
+  .test failure  
   127.0.0.1 failure
-  .a failure
-  ..127.0.0.1 failure
-  a failure
-  127.0.0.1 failure
-  a failure
-  127.0.0.1 failure
+  .a failure  
+  ..127.0.0.1 failure  
+  a failure  
+  127.0.0.1 failure  
+  a failure  
+  127.0.0.1 failure  
+    
+  map[test:map[failure:1 success:2] a:map[failure:3] superfrink.net:map[success:3] 127.0.0.1:map[failure:4]]  
+              test       1 failures       2 successes  
+                 a       3 failures       0 successes  
+    superfrink.net       0 failures       3 successes  
+         127.0.0.1       4 failures       0 successes  
+  a failure  
+  127.0.0.1 failure  
+  a failure  
+  127.0.0.1 failure  
   
-  map[test:map[failure:1 success:2] a:map[failure:3] superfrink.net:map[success:3] 127.0.0.1:map[failure:4]]
-              test       1 failures       2 successes
-                 a       3 failures       0 successes
-    superfrink.net       0 failures       3 successes
-         127.0.0.1       4 failures       0 successes
-  a failure
-  127.0.0.1 failure
-  a failure
-  127.0.0.1 failure
