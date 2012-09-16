@@ -47,7 +47,7 @@ func aggregator(input chan []string, dump_stats chan bool) {
 				statistics[host][status] ++;
 
 			case <- dump_stats:
-				fmt.Printf("%v\n", statistics)
+				//fmt.Printf("%v\n", statistics)
 				fmt.Print(format_statistics(statistics))
 			}
 		}
