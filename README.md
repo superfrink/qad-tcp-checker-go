@@ -49,11 +49,17 @@ summary of the connection statistics.
 
 == Program archtecture ==
 
-1) The aggregator reads collects server status data sent to a channel by the
-   check_host_list function.  Also if the user presses the Enter key the
-   aggregator prints the statistics to the console.
+1) The aggregator reads server status data sent to a channel by the
+   check_host_list function.
 
-2) The check_host_list is a fan-in that uses check_host to check each host.
+   When a message arrives on a second channel the aggregator prints the server
+   statistics to the console when a message is received.
 
-3) The check_host checks a single host, writes the status to a channel and
-   sleeps for 1 to 2 seconds.
+2) The check_host_list is a fan-in that calls check_host on each host.
+
+3) The check_host checks a single host, writes the status to a channel, and
+   sleeps for 1 to 2 seconds before checking again.
+
+4) The main function starts the other components and then waits.  If the user
+   presses the Enter key a message is sent to the aggregator asking it to show
+   the server statistics.
