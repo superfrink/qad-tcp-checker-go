@@ -56,6 +56,8 @@ func aggregator(input chan []string, dump_stats chan bool) {
 
 func check_host(output chan []string, host string) {
 	port := 80  // FIXME: make a parameter
+	// FIXME : resolve the host IP address before entering the loop
+
 	go func() {
 		for {
 			// check the network status for the host
