@@ -46,4 +46,14 @@ summary of the connection statistics.
   127.0.0.1 failure  
   a failure  
   127.0.0.1 failure  
-  
+
+== Program archtecture ==
+
+1) The aggregator reads collects server status data sent to a channel by the
+   check_host_list function.  Also if the user presses the Enter key the
+   aggregator prints the statistics to the console.
+
+2) The check_host_list is a fan-in that uses check_host to check each host.
+
+3) The check_host checks a single host, writes the status to a channel and
+   sleeps for 1 to 2 seconds.
