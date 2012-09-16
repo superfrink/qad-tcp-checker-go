@@ -17,9 +17,9 @@ slept for a second before trying again.  With 12 nodes there could be more
 than 15 seconds between when a host was checked.
 
 I wrote this Go version to remove the sequential limitation in my previous
-program.  I thought about using Perl threads but that may not work with the
-USR1 signal.  I thought about multiplexing I/O.  Is there a way to multiplex
-the connect() call?
+program.  Goroutines seemed to be a natural solution.  I thought about using
+Perl threads but that may not work with the USR1 signal.  I thought about
+multiplexing I/O but is there a way to multiplex the connect() call?
 
 This program prints a warning when connecting to a server does not complete in
 1 second.  Pressing the Enter key while the program is running will dump a
