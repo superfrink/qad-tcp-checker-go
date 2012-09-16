@@ -88,9 +88,9 @@ func main() {
 	status := make(chan []string)
 	dump_stats := make(chan bool)
 	aggregator(status, dump_stats)
-	status <- []string{"test", "success"}
-	status <- []string{"test", "failure"}
-	status <- []string{"test", "success"}
+	//status <- []string{"test", "success"}
+	//status <- []string{"test", "failure"}
+	//status <- []string{"test", "success"}
 
 	// Start collecting stats
 	host_list := []string{"a", "superfrink.net", "127.0.0.1"}
