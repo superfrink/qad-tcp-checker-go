@@ -15,11 +15,7 @@ func format_statistics(stats map[string]map[string]int) string {
 
 	for host, host_map := range stats {
 
-		str += fmt.Sprintf("%15s", host);
-		for status, count := range host_map {
-			str += fmt.Sprintf(" %s %d\t", status, count);
-		}
-		str += fmt.Sprintln();
+		str += fmt.Sprintf("%16s %7d failures %7d successes\n", host, host_map["failure"], host_map["success"])
 	}
 
 	return str
@@ -41,6 +37,7 @@ func aggregator(input chan []string, dump_stats chan bool) {
 				}
 
 				if _, ok := statistics[host]; !ok {
+					fmt.Print(".")
 					statistics[host] = make(map[string]int)
 				}
 
@@ -51,7 +48,6 @@ func aggregator(input chan []string, dump_stats chan bool) {
 
 			case <- dump_stats:
 				fmt.Printf("%v\n", statistics)
-
 				fmt.Print(format_statistics(statistics))
 			}
 		}
@@ -73,8 +69,8 @@ func check_host(output chan []string, host string) {
 				conn.Close()
 			}
 
-			// wait for a bit before checking again
-			time.Sleep(time.Second * time.Duration(rand.Intn(1) + 1))
+			// wait for 1 to 2 seconds before checking again
+			time.Sleep(time.Millisecond * time.Duration(rand.Intn(1000) + 1000))
 		}
 	}()
 }
