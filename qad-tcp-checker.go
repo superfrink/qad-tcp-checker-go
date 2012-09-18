@@ -98,6 +98,7 @@ func main() {
 	host_list := []string{"a", "superfrink.net", "127.0.0.1"}
 	check_host_list(status, host_list)
 
+	fmt.Println("Connection errors will appear on the console as they occur.\nPress the Enter key to see all of the statistics.\n")
 	reader := bufio.NewReader(os.Stdin)
 	for {
 		_, _, err := reader.ReadLine()

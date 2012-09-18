@@ -9,8 +9,8 @@ Nodes in a group of load balanced web servers were taking turns going down.
 They were taking too long to respond to TCP connections.
 
 I didn't have any graphing or monitoring.  I quickly wrote something in Perl
-to tell me when a server was taking too long to respond.  Then I could login
-and debug.  See https://github.com/superfrink/qad-tcp-checker
+to tell me when a server was taking too long to respond so I could login and
+debug.  See https://github.com/superfrink/qad-tcp-checker
 
 The Perl code sequentially checked each node and after checking all nodes
 slept for a second before trying again.  With 12 nodes there could be more
