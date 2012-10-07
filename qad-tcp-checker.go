@@ -28,11 +28,11 @@ func aggregator(input chan []string, dump_stats chan bool) {
 		var message []string
 		for {
 			select {
-			case message = <- input :
-				host   := message[0]
+			case message = <-input:
+				host := message[0]
 				status := message[1]
 
-				if("success" != status) {
+				if "success" != status {
 					fmt.Println(message[0] + " " + message[1])
 				}
 
@@ -44,9 +44,9 @@ func aggregator(input chan []string, dump_stats chan bool) {
 				if _, ok := statistics[host][status]; !ok {
 					statistics[host][status] = 0
 				}
-				statistics[host][status] ++;
+				statistics[host][status]++
 
-			case <- dump_stats:
+			case <-dump_stats:
 				//fmt.Printf("%v\n", statistics)
 				fmt.Print(format_statistics(statistics))
 			}
@@ -55,13 +55,13 @@ func aggregator(input chan []string, dump_stats chan bool) {
 }
 
 func check_host(output chan []string, host string) {
-	port := 80  // FIXME: make a parameter
+	port := 80 // FIXME: make a parameter
 	// FIXME : resolve the host IP address before entering the loop
 
 	go func() {
 		for {
 			// check the network status for the host
-			conn, err := net.Dial("tcp", host + ":" + strconv.Itoa(port))
+			conn, err := net.Dial("tcp", host+":"+strconv.Itoa(port))
 			if err != nil {
 				// CLAIM: error
 				output <- []string{host, "failure"}
@@ -72,7 +72,7 @@ func check_host(output chan []string, host string) {
 			}
 
 			// wait for 1 to 2 seconds before checking again
-			time.Sleep(time.Millisecond * time.Duration(rand.Intn(1000) + 1000))
+			time.Sleep(time.Millisecond * time.Duration(rand.Intn(1000)+1000))
 		}
 	}()
 }
