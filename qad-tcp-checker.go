@@ -34,10 +34,11 @@ func aggregator(input chan []string, dump_stats chan bool) {
 
 				if "success" != status {
 					fmt.Println(message[0] + " " + message[1])
+				} else {
+					fmt.Print(".")
 				}
 
 				if _, ok := statistics[host]; !ok {
-					fmt.Print(".")
 					statistics[host] = make(map[string]int)
 				}
 
